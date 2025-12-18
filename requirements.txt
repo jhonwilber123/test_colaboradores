@@ -12,3 +12,4 @@ httpx
 openai
 aiofiles
 python-multipart
+pydantic-settings
