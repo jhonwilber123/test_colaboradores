@@ -1,0 +1,11 @@
+services:
+  audio-evaluator:
+    build: .
+    container_name: audio_evaluator_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./audios:/app/audios
+    env_file:
+      - .env
+    restart: always

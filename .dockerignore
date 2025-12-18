@@ -1,0 +1,25 @@
+# Ignorar sistema de control de versiones
+.git
+.gitignore
+
+# Ignorar entornos virtuales locales (¡MUY IMPORTANTE!)
+venv/
+env/
+.venv/
+
+# Ignorar archivos compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar archivos de configuración de entorno (Seguridad)
+.env
+.env.*
+
+# Ignorar la carpeta de audios (la montaremos con volumes en docker-compose)
+audios/
+
+# Ignorar archivos de Docker (opcional, pero buena práctica)
+Dockerfile
+docker-compose.yml
