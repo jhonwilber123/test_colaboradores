@@ -1,8 +1,7 @@
 #evaluation.py
-import datetime
+from datetime import datetime 
 
 from app.models.prompt import Prompt
-
 
 class AIResponse:
 

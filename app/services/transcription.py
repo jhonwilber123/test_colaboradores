@@ -8,12 +8,11 @@ logger = logging.getLogger("app")
 
 class TranscriptionService:
     def __init__(self):
-        # Usamos la misma Key que configuramos en settings
         self.client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
 
     async def transcribe(self, file_path: Path) -> str:
         """
-        Envía el audio a Whisper-1 y devuelve el texto.
+        Transcribe usando el modelo solicitado con la estrategia automática.
         """
         if not file_path.exists():
             raise FileNotFoundError(f"El archivo no existe: {file_path}")
@@ -22,19 +21,19 @@ class TranscriptionService:
         
         try:
             with open(file_path, "rb") as audio_file:
-                # Llamada a la API de Whisper
                 transcript = await self.client.audio.transcriptions.create(
-                    model="whisper-1", 
+                    model="gpt-4o-transcribe-diarize",
                     file=audio_file,
-                    response_format="text" # Pedimos texto plano directo
+                    response_format="text",
+                    # CAMBIO AQUÍ: El error nos dijo que usemos "auto"
+                    chunking_strategy="auto" 
                 )
             
             logger.info("✅ Transcripción completada.")
             return transcript
             
         except Exception as e:
-            logger.error(f"❌ Error en Whisper: {e}")
+            logger.error(f"❌ Error en Transcripción: {e}")
             raise e
 
-# Instanciamos el servicio para importarlo en routes.py
 transcription_service = TranscriptionService()
