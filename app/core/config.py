@@ -1,10 +1,17 @@
-from pydantic import BaseSettings
+#config.py
+from pathlib import Path
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-
     OPENAI_API_KEY: str
     
-    class Config:
-        env_file = ".env"
+    # Modelos
+    MODEL_EVALUATION: str = "gpt-4o-mini"
+    
+    # Rutas
+    BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
+    INPUT_DIR: Path = BASE_DIR / "data" / "input"
+
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 settings = Settings()

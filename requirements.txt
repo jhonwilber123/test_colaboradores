@@ -1,3 +1,4 @@
+# Originales del repo
 FastAPI
 uvicorn
 pydantic
@@ -6,3 +7,8 @@ databases
 python-dotenv
 pytest
 httpx
+
+# Agregados NECESARIOS para la solución
+openai
+aiofiles
+python-multipart
